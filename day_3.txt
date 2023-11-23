@@ -1,0 +1,285 @@
+Q-1. Write an SQL query to fetch “FIRST_NAME” from Worker table using
+the alias name as &lt;WORKER_NAME&gt;
+-> select First_name worker_name from worker;
++-------------+
+| worker_name |
++-------------+
+| Monika      |
+| NIharika    |
+| vishal      |
+| Amitabh     |
+| Vivek       |
+| Vipul       |
+| Satish      |
+| Geetika     |
++-------------+
+
+Q-2. Write an SQL query to fetch “FIRST_NAME” from Worker table in
+upper case.
+->
+select upper (first_name) Name from worker;
++----------+
+| Name     |
++----------+
+| MONIKA   |
+| NIHARIKA |
+| VISHAL   |
+| AMITABH  |
+| VIVEK    |
+| VIPUL    |
+| SATISH   |
+| GEETIKA  |
++----------+
+
+ Q-3. Write an SQL query to fetch unique values of DEPARTMENT from
+Worker table.
+->
+select distinct(department) from worker;
++------------+
+| department |
++------------+
+| HR         |
+| Admin      |
+| Account    |
++------------+
+
+Q-4. Write an SQL query to print the FIRST_NAME and LAST_NAME from
+Worker table into a single column COMPLETE_NAME. A space char
+should separate them.
+->
+ select concat(first_name,'',last_name) as complete_name from worker;
+
++----------------+
+| complete_name  |
++----------------+
+| MonikaArora    |
+| NIharikaVerma  |
+| vishalsinghal  |
+| AmitabhSingh   |
+| VivekBhati     |
+| VipulDiwan     |
+| SatishKumar    |
+| GeetikaChauhan |
++----------------+
+
+Q5Write an SQL query to print all Worker details from the Worker table
+order by FIRST_NAME Ascending.
+->
+ select first_name from worker order by first_name;
++------------+
+| first_name |
++------------+
+| Amitabh    |
+| Geetika    |
+| Monika     |
+| NIharika   |
+| Satish     |
+| Vipul      |
+| vishal     |
+| Vivek      |
++------------+
+
+Q6.Write an SQL query to print all Worker details from the Worker table
+order by FIRST_NAME Ascending and DEPARTMENT Descending.
+->
+select first_name,last_name,department from worker order by first_name asc;
++------------+-----------+------------+
+| first_name | last_name | department |
++------------+-----------+------------+
+| Amitabh    | Singh     | Admin      |
+| Geetika    | Chauhan   | Admin      |
+| Monika     | Arora     | HR         |
+| NIharika   | Verma     | Admin      |
+| Satish     | Kumar     | Account    |
+| Vipul      | Diwan     | Account    |
+| vishal     | singhal   | HR         |
+| Vivek      | Bhati     | Admin      |
++------------+-----------+------------+
+8 rows in set (0.00 sec)
+
+
+Q7.Write an SQL query to print details for Workers with the first name as
+“Vipul” and “Satish” from Worker table.
+->
+select * from worker where first_name in( 'vipul','satish');
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
+
+
+Q-8. Write an SQL query to print details of workers excluding first names,
+“Vipul” and “Satish” from Worker table.
+->
+select * from worker where first_name not in( 'vipul','satish');
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | NIharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         3 | vishal     | singhal   |  30000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+
+
+
+Q-9. Write an SQL query to print details of Workers with DEPARTMENT
+name as “Admin”.
+->
+ select * from worker where department="Admin";
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         2 | NIharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+
+
+Q10.Write an SQL query to print details of the Workers whose
+FIRST_NAME contains ‘a’.
+-> select * from worker where first_name like "%a%";
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | NIharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         3 | vishal     | singhal   |  30000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+6 rows in set (0.01 sec)
+
+Q-11. Write an SQL query to print details of the Workers whose
+FIRST_NAME ends with ‘a’.
+->
+select * from worker where first_name like "%a";
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | NIharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+----------------
+
+
+Q-12. Write an SQL query to print details of the Workers whose
+FIRST_NAME ends with ‘h’ and contains six alphabets.
+->
+ select first_name from worker where first_name like "______h%";
++------------+
+| first_name |
++------------+
+| Amitabh    |
++------------+
+
+Q-13. Write an SQL query to print details of the Workers whose SALARY
+lies between 100000 and 500000.
+->select * from worker where salary between 100000 and 500000;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
++-----------+------------+-----------+--------+---------------------+------------+
+4 rows in set (0.00 sec)
+
+Q14.Q-14. Write an SQL query to print details of the Workers who have joined
+in Feb’2014.
+
+select * from worker where joining_date ="2014-02-20 09:00:00";
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         3 | vishal     | singhal   |  30000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+
+
+select * from worker where joining_date like "2014-02%";
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         3 | vishal     | singhal   |  30000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+Q-15. Write an SQL query to fetch the count of employees working in the
+department ‘Admin’.
+->
+ select count(*) from worker where department="Admin";
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+
+Q16.Q-16. Write an SQL query to fetch worker names with salaries &gt;= 50000
+and &lt;= 100000.
+->
+select first_name from worker where salary between 50000 and 100000;
++------------+
+| first_name |
++------------+
+| Monika     |
+| NIharika   |
+| Satish     |
+| Geetika    |
++------------+
+
+Q17.Q-17. Write an SQL query to fetch the no. of workers for each department
+in the descending order..
+->
+select department,count(worker_id) from worker group by department order by department desc;
++------------+------------------+
+| department | count(worker_id) |
++------------+------------------+
+| HR         |                2 |
+| Admin      |                4 |
+| Account    |                2 |
++------------+------------------+
++-----------+------------+-----
+
+
+Q-18. Write an SQL query to print details of the Workers who are also
+Managers.
+
+->
+select * from worker w inner join title t on w.worker_id=t.worker_ref_id where t.worker_title="manager";
++-----------+------------+-----------+--------+---------------------+------------+---------------+--------------+---------------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT | WORKER_REF_ID | WORKER_TITLE | AFFECTED_FROM       |
++-----------+------------+-----------+--------+---------------------+------------+---------------+--------------+---------------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |             1 | Manager      | 2016-02-20 00:00:00 |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |             5 | Manager      | 2016-06-11 00:00:00 |
++-----------+------------+-----------+--------+---------------------+------------+---------------+--------------+---------------------+
+
+Q-19. Write an SQL query to fetch duplicate records having matching data
+in some fields of a table.
+->   select worker_title,affected_from from title group by worker_title,affected_from having count(*)>1;
++--------------+---------------------+
+| worker_title | affected_from       |
++--------------+---------------------+
+| Executive    | 2016-06-11 00:00:00 |
+| Lead         | 2016-06-11 00:00:00 |
++--------------+---------------------+
+
+
+Q-20. Write an SQL query to show only odd rows from a table.
+->
+select * from worker where worker_id%2<>0;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         3 | vishal     | singhal   |  30000 | 2014-02-20 09:00:00 | HR         |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
++-----------+------------+-----------+--------+---------------------+------------+
+
